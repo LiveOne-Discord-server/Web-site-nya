@@ -1,8 +1,9 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Home, Info } from "lucide-react";
+import { Home, Info, ScrollText } from "lucide-react";
 import HomeTab from "@/components/HomeTab";
 import DescriptionTab from "@/components/DescriptionTab";
+import RulesTab from "@/components/RulesTab";
 import TabContent from "@/components/TabContent";
 
 interface TabsContainerProps {
@@ -14,7 +15,7 @@ const TabsContainer = ({ activeTab, onTabChange }: TabsContainerProps) => {
   return (
     <div className="max-w-4xl mx-auto pt-12 relative z-10">
       <Tabs defaultValue="home" className="w-full" onValueChange={onTabChange}>
-        <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-800/50 backdrop-blur rounded-full p-1 max-w-[200px] mx-auto">
+        <TabsList className="grid w-full grid-cols-3 mb-8 bg-gray-800/50 backdrop-blur rounded-full p-1 max-w-[300px] mx-auto">
           <TabsTrigger 
             value="home" 
             className="rounded-full hover:scale-105 transition-all duration-300 data-[state=active]:bg-primary"
@@ -27,6 +28,12 @@ const TabsContainer = ({ activeTab, onTabChange }: TabsContainerProps) => {
           >
             <Info className="w-5 h-5 animate-fade-in" />
           </TabsTrigger>
+          <TabsTrigger 
+            value="rules" 
+            className="rounded-full hover:scale-105 transition-all duration-300 data-[state=active]:bg-primary"
+          >
+            <ScrollText className="w-5 h-5 animate-fade-in" />
+          </TabsTrigger>
         </TabsList>
 
         <div className="relative min-h-[600px]">
@@ -36,6 +43,10 @@ const TabsContainer = ({ activeTab, onTabChange }: TabsContainerProps) => {
 
           <TabContent isActive={activeTab === "description"}>
             <DescriptionTab />
+          </TabContent>
+
+          <TabContent isActive={activeTab === "rules"}>
+            <RulesTab />
           </TabContent>
         </div>
       </Tabs>

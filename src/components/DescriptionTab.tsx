@@ -1,12 +1,28 @@
 import React, { useState } from "react";
-import { Youtube, Github } from "lucide-react";
+import { Youtube, Github, Info } from "lucide-react";
+import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import LanguageSwitcher from "./rules/LanguageSwitcher";
+import { translations } from "@/lib/translations";
 
 const DescriptionTab = () => {
   const [showMarmurLinks, setShowMarmurLinks] = useState(false);
+  const [showServerInfo, setShowServerInfo] = useState(false);
+  const [language, setLanguage] = useState<"en" | "uk" | "ru">("en");
+  const t = translations[language];
 
   return (
     <div className="space-y-6 text-center">
-      <h2 className="text-4xl font-bold mb-8">Meet Our Team</h2>
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-4xl font-bold">{t.team.title}</h2>
+        <LanguageSwitcher language={language} setLanguage={setLanguage} />
+      </div>
+      
       <div className="space-y-8">
         <div className="p-6 bg-gray-800 rounded-lg hover:scale-105 transition-transform">
           <h3 className="text-2xl font-semibold mb-2">
@@ -19,7 +35,7 @@ const DescriptionTab = () => {
               Baner
             </a>
           </h3>
-          <p className="text-gray-400">Not the Owner (but still awesome!)</p>
+          <p className="text-gray-400">{t.team.baner}</p>
         </div>
         
         <div className="relative p-6 bg-gray-800 rounded-lg hover:scale-105 transition-transform">
@@ -51,13 +67,37 @@ const DescriptionTab = () => {
           >
             Marmur
           </h3>
-          <p className="text-gray-400">Also Not the Owner (and that's okay!)</p>
+          <p className="text-gray-400">{t.team.marmur}</p>
         </div>
 
         <div className="p-6 bg-gray-800 rounded-lg hover:scale-105 transition-transform group relative">
           <h3 className="text-2xl font-semibold mb-2 text-secondary">Asina</h3>
-          <p className="text-gray-400">Owner of LiveOne ✨</p>
+          <p className="text-gray-400">{t.team.asina}</p>
         </div>
+      </div>
+
+      <div className="mt-12">
+        <Button
+          variant="outline"
+          className="gap-2"
+          onClick={() => setShowServerInfo(true)}
+        >
+          <Info className="w-4 h-4" />
+          {t.serverInfo.buttonText}
+        </Button>
+
+        <Dialog open={showServerInfo} onOpenChange={setShowServerInfo}>
+          <DialogContent className="bg-gray-800 text-white">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold mb-4">{t.serverInfo.title}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <p className="text-gray-300">
+                {t.serverInfo.content}
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

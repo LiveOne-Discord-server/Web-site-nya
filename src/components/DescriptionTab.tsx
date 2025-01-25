@@ -37,8 +37,7 @@ const DescriptionTab = () => {
 
   const handleMarmurHover = () => {
     toast({
-      title: "ПОМОГИТЕ !!!",
-      variant: "destructive",
+      description: <div className="animate-vibrate">🐱</div>,
       duration: 3000,
     });
   };

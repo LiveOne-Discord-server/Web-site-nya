@@ -38,7 +38,7 @@ const CustomCursor = () => {
   return (
     <>
       <div
-        className="fixed w-8 h-8 pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-transform duration-150"
+        className="fixed w-8 h-8 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-transform duration-150"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,

@@ -15,6 +15,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [typedKeys, setTypedKeys] = useState("");
   const [virusAlert, setVirusAlert] = useState(false);
+  const [showCatsTab, setShowCatsTab] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,7 +28,7 @@ const Index = () => {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       const newTypedKeys = typedKeys + event.key;
-      setTypedKeys(newTypedKeys.slice(-5)); // Keep only last 5 characters
+      setTypedKeys(newTypedKeys.slice(-6)); // Keep last 6 characters to check for "marmur"
 
       if (newTypedKeys.toLowerCase().includes("baner")) {
         toast("Пасхалка ещё не готова... приходите позже 🥚", {
@@ -41,6 +42,15 @@ const Index = () => {
         setTimeout(() => {
           window.location.reload();
         }, 10000);
+        setTypedKeys("");
+      }
+
+      if (newTypedKeys.toLowerCase().includes("marmur")) {
+        setShowCatsTab(true);
+        setActiveTab("cats");
+        toast("Мяу! Котики появились! 🐱", {
+          duration: 3000,
+        });
         setTypedKeys("");
       }
     };
@@ -58,7 +68,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-transparent text-white p-4 relative overflow-y-auto">
       <MovingParticlesBackground />
-      <TabsContainer activeTab={activeTab} onTabChange={setActiveTab} />
+      <TabsContainer 
+        activeTab={activeTab} 
+        onTabChange={setActiveTab} 
+        showCatsTab={showCatsTab}
+      />
       
       <AlertDialog open={virusAlert} onOpenChange={setVirusAlert}>
         <AlertDialogContent className="animate-vibrate bg-red-500 border-red-700">

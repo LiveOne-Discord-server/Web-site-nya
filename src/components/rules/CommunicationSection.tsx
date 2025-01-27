@@ -7,7 +7,7 @@ interface CommunicationSectionProps {
 const CommunicationSection = ({ t }: CommunicationSectionProps) => {
   return (
     <div>
-      <h3 className="text-xl font-semibold text-primary mb-4">{t.communication.title}</h3>
+      <h3 className="text-xl font-semibold text-black mb-4">{t.communication.title}</h3>
       <ul className="space-y-4">
         <li className="flex gap-2 hover:bg-primary/10 p-2 rounded-lg transition-all duration-300 transform hover:translate-x-2">
           <span>💬</span>

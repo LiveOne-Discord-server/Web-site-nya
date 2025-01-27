@@ -16,11 +16,14 @@ const Index = () => {
   const [typedKeys, setTypedKeys] = useState("");
   const [virusAlert, setVirusAlert] = useState(false);
   const [showCatsTab, setShowCatsTab] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+      // Add a small delay before showing content for smooth transition
+      setTimeout(() => setContentVisible(true), 500);
+    }, 7000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -28,7 +31,7 @@ const Index = () => {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       const newTypedKeys = typedKeys + event.key;
-      setTypedKeys(newTypedKeys.slice(-6)); // Keep last 6 characters to check for "marmur"
+      setTypedKeys(newTypedKeys.slice(-6));
 
       if (newTypedKeys.toLowerCase().includes("baner")) {
         toast("Пасхалка ещё не готова... приходите позже 🥚", {
@@ -61,28 +64,38 @@ const Index = () => {
     };
   }, [typedKeys]);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <div className="min-h-screen bg-transparent text-white p-4 relative overflow-y-auto">
-      <MovingParticlesBackground />
-      <TabsContainer 
-        activeTab={activeTab} 
-        onTabChange={setActiveTab} 
-        showCatsTab={showCatsTab}
-      />
-      
-      <AlertDialog open={virusAlert} onOpenChange={setVirusAlert}>
-        <AlertDialogContent className="animate-vibrate bg-red-500 border-red-700">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-2xl text-white text-center">
-              ⚠️ ВНИМАНИЕ! ОБНАРУЖЕН ВИРУС! ⚠️
-            </AlertDialogTitle>
-          </AlertDialogHeader>
-        </AlertDialogContent>
-      </AlertDialog>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <MovingParticlesBackground />
+          <div 
+            className={`transition-all duration-1000 transform ${
+              contentVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-4"
+            }`}
+          >
+            <TabsContainer 
+              activeTab={activeTab} 
+              onTabChange={setActiveTab} 
+              showCatsTab={showCatsTab}
+            />
+          </div>
+          
+          <AlertDialog open={virusAlert} onOpenChange={setVirusAlert}>
+            <AlertDialogContent className="animate-vibrate bg-red-500 border-red-700">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-2xl text-white text-center">
+                  ⚠️ ВНИМАНИЕ! ОБНАРУЖЕН ВИРУС! ⚠️
+                </AlertDialogTitle>
+              </AlertDialogHeader>
+            </AlertDialogContent>
+          </AlertDialog>
+        </>
+      )}
     </div>
   );
 };

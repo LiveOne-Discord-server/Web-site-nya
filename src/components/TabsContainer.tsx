@@ -1,10 +1,11 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Home, Info, ScrollText, Cat } from "lucide-react";
+import { Home, Info, ScrollText, Cat, Gamepad } from "lucide-react";
 import HomeTab from "@/components/HomeTab";
 import DescriptionTab from "@/components/DescriptionTab";
 import RulesTab from "@/components/RulesTab";
 import CatsTab from "@/components/CatsTab";
+import GamesTab from "@/components/GamesTab";
 import TabContent from "@/components/TabContent";
 import { cn } from "@/lib/utils";
 
@@ -20,8 +21,8 @@ const TabsContainer = ({ activeTab, onTabChange, showCatsTab }: TabsContainerPro
       <Tabs defaultValue="home" className="w-full" onValueChange={onTabChange}>
         <TabsList 
           className={cn(
-            "grid mb-8 bg-gray-800/50 backdrop-blur rounded-full p-1 max-w-[300px] mx-auto",
-            showCatsTab ? "grid-cols-4" : "grid-cols-3"
+            "grid mb-8 bg-gray-800/50 backdrop-blur rounded-full p-1 max-w-[350px] mx-auto",
+            showCatsTab ? "grid-cols-5" : "grid-cols-4"
           )}
         >
           <TabsTrigger 
@@ -41,6 +42,12 @@ const TabsContainer = ({ activeTab, onTabChange, showCatsTab }: TabsContainerPro
             className="rounded-full hover:scale-105 transition-all duration-300 data-[state=active]:bg-primary"
           >
             <ScrollText className="w-5 h-5 animate-fade-in" />
+          </TabsTrigger>
+          <TabsTrigger 
+            value="games" 
+            className="rounded-full hover:scale-105 transition-all duration-300 data-[state=active]:bg-primary"
+          >
+            <Gamepad className="w-5 h-5 animate-fade-in" />
           </TabsTrigger>
           {showCatsTab && (
             <TabsTrigger 
@@ -63,6 +70,10 @@ const TabsContainer = ({ activeTab, onTabChange, showCatsTab }: TabsContainerPro
 
           <TabContent isActive={activeTab === "rules"}>
             <RulesTab />
+          </TabContent>
+
+          <TabContent isActive={activeTab === "games"}>
+            <GamesTab />
           </TabContent>
 
           {showCatsTab && (

@@ -59,5 +59,10 @@ export const enTranslations = {
     buttonText: "Server Information",
     title: "About LiveOne Server",
     content: "LiveOne (previously called BanLive) - server with open source and community. Our task on the server... honestly, we don't know, we created the server for the purpose of building a community and helping people, communicating, having fun, and if anything, contact us. And also a little information about who is the leader here."
+  },
+  games: {
+    title: "Popular Games",
+    others: "Others",
+    percentage: "%"
   }
 };

@@ -51,7 +51,7 @@ const RulesTab = () => {
             <ConsequencesSection t={t} />
           </section>
 
-          <p className="text-white/80 italic mt-8">
+          <p className="text-black/80 italic mt-8">
             {t.footer}
           </p>
         </CardContent>

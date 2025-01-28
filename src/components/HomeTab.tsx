@@ -14,10 +14,14 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const HomeTab = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   useEffect(() => {
-    // Show cookie consent dialog on mount
     const cookieDialog = document.getElementById("cookie-dialog");
     if (cookieDialog) {
       (cookieDialog as any).showModal();
@@ -25,7 +29,7 @@ const HomeTab = () => {
   }, []);
 
   const handleCookieResponse = () => {
-    toast("Sorry, we don't actually have any cookies... can't eat them without tea anyway! 🍪", {
+    toast(t.home.cookieToast, {
       duration: 5000,
     });
   };
@@ -35,20 +39,20 @@ const HomeTab = () => {
       <AlertDialog defaultOpen>
         <AlertDialogContent>
           <AlertDialogTitle className="text-xl mb-4">
-            Would you like to accept our cookies? 🍪
+            {t.home.cookieTitle}
           </AlertDialogTitle>
           <AlertDialogFooter className="flex-col gap-2 sm:flex-col">
             <AlertDialogAction
               onClick={handleCookieResponse}
               className="w-full bg-primary hover:bg-primary/90"
             >
-              Accept
+              {t.home.accept}
             </AlertDialogAction>
             <AlertDialogAction
               onClick={handleCookieResponse}
               className="w-full bg-secondary hover:bg-secondary/90"
             >
-              No choice, I will accept
+              {t.home.noChoice}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -90,26 +94,26 @@ const HomeTab = () => {
                 </div>
               </div>
             </div>
-            <p className="text-lg text-gray-300">Meow...who are you.... please don't touch me, I want to sleep</p>
+            <p className="text-lg text-gray-300">{t.home.catDialog}</p>
           </div>
         </DialogContent>
       </Dialog>
 
       <p className="text-xl text-gray-300 mb-12 animate-fade-up delay-200">
-        An open and free Discord server
+        {t.home.subtitle}
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate-fade-up delay-300">
-        <InfoCard title="Open" description="We try not to be cruel and treat mostly calmly" color="hover:bg-primary/20" />
-        <InfoCard title="Security" description="Our server does not steal data....just we have no one to sell 0w0" color="hover:bg-secondary/20" />
-        <InfoCard title="Communication" description="Our server gives the right to communicate in your language, which is easier for you" color="hover:bg-green-500/20" />
-        <InfoCard title="Pies" description="Pies ?.... wrong I guess" color="hover:bg-purple-500/20" />
+        <InfoCard title={t.home.cards.open.title} description={t.home.cards.open.description} color="hover:bg-primary/20" />
+        <InfoCard title={t.home.cards.security.title} description={t.home.cards.security.description} color="hover:bg-secondary/20" />
+        <InfoCard title={t.home.cards.communication.title} description={t.home.cards.communication.description} color="hover:bg-green-500/20" />
+        <InfoCard title={t.home.cards.pies.title} description={t.home.cards.pies.description} color="hover:bg-purple-500/20" />
       </div>
 
       <div className="flex flex-col items-center justify-center gap-8">
         <DiscordButton />
         <SocialLinks />
-        <p className="text-gray-400 mt-8">LiveOne Nyam Free and Simple Server</p>
+        <p className="text-gray-400 mt-8">{t.home.footer}</p>
       </div>
     </div>
   );

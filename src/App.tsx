@@ -5,8 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomCursor from "./components/CustomCursor";
 import Index from "./pages/Index";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import GlobalLanguageSwitcher from "./components/GlobalLanguageSwitcher";
 
-// Initialize QueryClient outside of component
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -20,16 +21,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <div className="cursor-none">
-            <CustomCursor />
-            <Toaster />
-            <Sonner />
-            <Routes>
-              <Route path="/" element={<Index />} />
-            </Routes>
-          </div>
-        </TooltipProvider>
+        <LanguageProvider>
+          <TooltipProvider>
+            <div className="cursor-none">
+              <CustomCursor />
+              <GlobalLanguageSwitcher />
+              <Toaster />
+              <Sonner />
+              <Routes>
+                <Route path="/" element={<Index />} />
+              </Routes>
+            </div>
+          </TooltipProvider>
+        </LanguageProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

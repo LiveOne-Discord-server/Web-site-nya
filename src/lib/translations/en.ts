@@ -64,5 +64,32 @@ export const enTranslations = {
     title: "Popular Games",
     others: "Others",
     percentage: "%"
+  },
+  home: {
+    cookieTitle: "Would you like to accept our cookies? 🍪",
+    cookieToast: "Sorry, we don't actually have any cookies... can't eat them without tea anyway! 🍪",
+    accept: "Accept",
+    noChoice: "No choice, I will accept",
+    catDialog: "Meow...who are you.... please don't touch me, I want to sleep",
+    subtitle: "An open and free Discord server",
+    cards: {
+      open: {
+        title: "Open",
+        description: "We try not to be cruel and treat mostly calmly"
+      },
+      security: {
+        title: "Security",
+        description: "Our server does not steal data....just we have no one to sell 0w0"
+      },
+      communication: {
+        title: "Communication",
+        description: "Our server gives the right to communicate in your language, which is easier for you"
+      },
+      pies: {
+        title: "Pies",
+        description: "Pies ?.... wrong I guess"
+      }
+    },
+    footer: "LiveOne Nyam Free and Simple Server"
   }
 };

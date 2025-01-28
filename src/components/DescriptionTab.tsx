@@ -3,16 +3,16 @@ import { Info, Users } from "lucide-react";
 import { Button } from "./ui/button";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
-import LanguageSwitcher from "./rules/LanguageSwitcher";
 import { translations } from "@/lib/translations";
 import TeamMember from "./team/TeamMember";
 import MorePeopleDialog from "./team/MorePeopleDialog";
 import ServerInfoDialog from "./team/ServerInfoDialog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DescriptionTab = () => {
   const [showServerInfo, setShowServerInfo] = useState(false);
   const [showMorePeople, setShowMorePeople] = useState(false);
-  const [language, setLanguage] = useState<"en" | "uk" | "ru">("en");
+  const { language } = useLanguage();
   const t = translations[language];
   const { toast } = useToast();
 
@@ -41,10 +41,7 @@ const DescriptionTab = () => {
 
   return (
     <div className="space-y-6 text-center">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-4xl font-bold">{t.team.title}</h2>
-        <LanguageSwitcher language={language} setLanguage={setLanguage} />
-      </div>
+      <h2 className="text-4xl font-bold">{t.team.title}</h2>
       
       <div className="space-y-8">
         <TeamMember

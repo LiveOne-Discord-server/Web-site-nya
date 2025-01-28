@@ -1,12 +1,11 @@
 import React from "react";
 import { Progress } from "@/components/ui/progress";
 import { Box, Target, Shield, Crosshair, Gamepad2 } from "lucide-react";
-import LanguageSwitcher from "./rules/LanguageSwitcher";
 import { translations } from "@/lib/translations";
-import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const GamesTab = () => {
-  const [language, setLanguage] = useState<"en" | "uk" | "ru">("en");
+  const { language } = useLanguage();
   const t = translations[language];
 
   const games = [
@@ -44,12 +43,9 @@ const GamesTab = () => {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8 p-6">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-center animate-fade-up">
-          {t.games.title}
-        </h2>
-        <LanguageSwitcher language={language} setLanguage={setLanguage} />
-      </div>
+      <h2 className="text-3xl font-bold text-center animate-fade-up">
+        {t.games.title}
+      </h2>
       <div className="space-y-6">
         {games.map((game, index) => (
           <div

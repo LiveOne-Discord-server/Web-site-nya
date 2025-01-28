@@ -67,7 +67,7 @@ const LoadingScreen = () => {
     <div 
       className={`fixed inset-0 bg-[#0A0A0F] flex items-center justify-center overflow-hidden transition-opacity duration-1000 ${
         isExiting ? "opacity-0" : "opacity-100"
-      }`}
+      } z-[100]`}
     >
       <div className="relative w-80 flex flex-col items-center gap-8">
         <div className="relative animate-fade-in">

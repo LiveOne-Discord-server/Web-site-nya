@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Info, Users } from "lucide-react";
 import { Button } from "./ui/button";
@@ -71,19 +72,19 @@ const DescriptionTab = () => {
       <div className="mt-12 space-y-4">
         <Button
           variant="outline"
-          className="gap-2"
+          className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white hover:from-purple-600 hover:to-indigo-700 border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 gap-2"
           onClick={() => setShowServerInfo(true)}
         >
-          <Info className="w-4 h-4" />
+          <Info className="w-4 h-4 animate-pulse" />
           {t.serverInfo.buttonText}
         </Button>
 
         <Button
           variant="outline"
-          className="gap-2 ml-4"
+          className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 gap-2 ml-4"
           onClick={() => setShowMorePeople(true)}
         >
-          <Users className="w-4 h-4" />
+          <Users className="w-4 h-4 animate-pulse" />
           More people?
         </Button>
 

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 import MovingParticlesBackground from "@/components/MovingParticlesBackground";
@@ -9,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import GlobalLanguageSwitcher from "@/components/GlobalLanguageSwitcher";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -71,6 +73,7 @@ const Index = () => {
       ) : (
         <>
           <MovingParticlesBackground />
+          {!isLoading && <GlobalLanguageSwitcher />}
           <div 
             className={`transition-all duration-1000 transform ${
               contentVisible 

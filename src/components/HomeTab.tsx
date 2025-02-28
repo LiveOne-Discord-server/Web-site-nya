@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import {
   Dialog,
@@ -16,6 +17,7 @@ import {
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
+import confetti from "canvas-confetti";
 
 const HomeTab = () => {
   const { language } = useLanguage();
@@ -31,6 +33,20 @@ const HomeTab = () => {
   const handleCookieResponse = () => {
     toast(t.home.cookieToast, {
       duration: 5000,
+    });
+  };
+
+  const handleCardHover = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    confetti({
+      particleCount: 30,
+      spread: 60,
+      origin: { x, y },
+      colors: ['#5865F2', '#9B87F5', '#6E57E0'],
+      disableForReducedMotion: true,
     });
   };
 
@@ -104,10 +120,30 @@ const HomeTab = () => {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate-fade-up delay-300">
-        <InfoCard title={t.home.cards.open.title} description={t.home.cards.open.description} color="hover:bg-primary/20" />
-        <InfoCard title={t.home.cards.security.title} description={t.home.cards.security.description} color="hover:bg-secondary/20" />
-        <InfoCard title={t.home.cards.communication.title} description={t.home.cards.communication.description} color="hover:bg-green-500/20" />
-        <InfoCard title={t.home.cards.pies.title} description={t.home.cards.pies.description} color="hover:bg-purple-500/20" />
+        <InfoCard 
+          title={t.home.cards.open.title} 
+          description={t.home.cards.open.description} 
+          color="hover:bg-primary/20" 
+          onHover={handleCardHover}
+        />
+        <InfoCard 
+          title={t.home.cards.security.title} 
+          description={t.home.cards.security.description} 
+          color="hover:bg-secondary/20" 
+          onHover={handleCardHover}
+        />
+        <InfoCard 
+          title={t.home.cards.communication.title} 
+          description={t.home.cards.communication.description} 
+          color="hover:bg-green-500/20" 
+          onHover={handleCardHover}
+        />
+        <InfoCard 
+          title={t.home.cards.pies.title} 
+          description={t.home.cards.pies.description} 
+          color="hover:bg-purple-500/20" 
+          onHover={handleCardHover}
+        />
       </div>
 
       <div className="flex flex-col items-center justify-center gap-8">
@@ -119,8 +155,21 @@ const HomeTab = () => {
   );
 };
 
-const InfoCard = ({ title, description, color }: { title: string; description: string; color: string }) => (
-  <div className={`p-6 bg-gray-800/50 backdrop-blur rounded-lg transition-all duration-300 hover:scale-105 hover:animate-vibrate ${color}`}>
+const InfoCard = ({ 
+  title, 
+  description, 
+  color, 
+  onHover 
+}: { 
+  title: string; 
+  description: string; 
+  color: string; 
+  onHover: (e: React.MouseEvent<HTMLDivElement>) => void 
+}) => (
+  <div 
+    className={`p-6 bg-gray-800/50 backdrop-blur rounded-lg transition-all duration-300 hover:scale-105 hover:animate-vibrate ${color}`}
+    onMouseEnter={onHover}
+  >
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p>{description}</p>
   </div>

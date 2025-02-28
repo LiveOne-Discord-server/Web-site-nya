@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Dialog,
@@ -18,11 +19,11 @@ const ServerInfoDialog = ({ open, onOpenChange, language }: ServerInfoDialogProp
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-gray-800 text-white">
+      <DialogContent className="bg-gray-800 text-white animate-fade-up border-gray-700">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-4">{t.serverInfo.title}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold mb-4 animate-fade-in">{t.serverInfo.title}</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
+        <div className="space-y-4 animate-fade-in" style={{ animationDelay: "100ms" }}>
           <p className="text-gray-300">
             {t.serverInfo.content}
           </p>

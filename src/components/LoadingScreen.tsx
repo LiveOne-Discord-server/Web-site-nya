@@ -1,13 +1,24 @@
+
 import React, { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import LavaLampBubbles from "./LavaLampBubbles";
+
+const colors = [
+  "bg-primary",
+  "bg-secondary",
+  "bg-green-500",
+  "bg-purple-500",
+  "bg-yellow-500",
+  "bg-red-500",
+  "bg-blue-500",
+];
 
 const LoadingScreen = () => {
   const [progress, setProgress] = React.useState(0);
   const [typedKeys, setTypedKeys] = useState("");
   const [dots, setDots] = useState("");
   const [isExiting, setIsExiting] = useState(false);
+  const [colorIndex, setColorIndex] = useState(0);
 
   // Handle loading progress
   useEffect(() => {
@@ -27,6 +38,15 @@ const LoadingScreen = () => {
     }, 100);
 
     return () => clearInterval(interval);
+  }, []);
+
+  // Handle color change
+  useEffect(() => {
+    const colorInterval = setInterval(() => {
+      setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+    }, 700);
+
+    return () => clearInterval(colorInterval);
   }, []);
 
   // Handle animated dots
@@ -70,12 +90,15 @@ const LoadingScreen = () => {
       } z-[100]`}
     >
       <div className="relative w-80 flex flex-col items-center gap-8">
-        <div className="relative animate-fade-in">
-          <LavaLampBubbles />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white/80 text-lg font-semibold z-10 animate-pulse">
-              {Math.round(progress)}%
-            </span>
+        <div className="w-24 h-24 flex items-center justify-center">
+          <div 
+            className={`w-16 h-16 rounded-full ${colors[colorIndex]} transition-all duration-300 animate-bounce shadow-lg`} 
+          >
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-white text-lg font-bold">
+                {Math.round(progress)}%
+              </span>
+            </div>
           </div>
         </div>
         

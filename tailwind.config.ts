@@ -69,11 +69,23 @@ export default {
           "0%, 100%": { transform: "rotate(-2deg)" },
           "50%": { transform: "rotate(2deg)" },
         },
+        float: {
+          "0%, 100%": { 
+            transform: "translateY(0) scale(1)",
+            opacity: "0.8"
+          },
+          "50%": { 
+            transform: "translateY(-20px) scale(1.1)",
+            opacity: "1"
+          }
+        }
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         vibrate: "vibrate 0.3s ease-in-out infinite",
+        "spin-slow": "spin 8s linear infinite",
+        float: "float 3s ease-in-out infinite",
       },
     },
   },

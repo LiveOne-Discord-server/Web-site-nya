@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -92,15 +93,29 @@
 
 @layer base {
   * {
-    @apply border-border cursor-none;
+    @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
   }
 
-  /* Interactive elements cursor styles */
-  a, button, [role="button"] {
-    @apply cursor-none;
+  /* Interactive elements cursor styles - fixed for Chrome */
+  a, button, [role="button"], input, textarea, select {
+    cursor: none;
+  }
+
+  /* Improved cursor handling on Chrome-based browsers */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    * {
+      cursor: none;
+    }
+  }
+
+  /* Disable custom cursor on mobile devices */
+  @media (hover: none) and (pointer: coarse) {
+    * {
+      cursor: auto !important;
+    }
   }
 }

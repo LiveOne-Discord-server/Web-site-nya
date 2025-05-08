@@ -1,4 +1,7 @@
 export const enTranslations = {
+  forum: {
+    redirecting: "Redirecting to forum..."
+  },
   title: "Server Rules",
   agreement: "By participating in our server, you automatically agree to these rules.",
   communication: {

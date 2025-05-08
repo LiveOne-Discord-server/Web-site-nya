@@ -7,6 +7,10 @@ export const enTranslations = {
       title: "Respectful Communication:",
       content: "Please remember that there is a real person behind every nickname. We strive to create a friendly community where everyone feels safe and respected. Toxic behavior, including insults, aggression, spam, and the use of profanity, is strictly prohibited."
     },
+    links: {
+      title: "Suspicious Links and Spam:",
+      content: "Posting suspicious links, advertising materials, or inappropriate content is considered spam and will be removed. The administration reserves the right to remove any content that may pose a security threat to users or violate server rules."
+    },
     questions: {
       title: "Questions and Answers:",
       content: "If you have questions or need help, please use the specific sections on the forums corresponding to your region or global forums for general discussion."

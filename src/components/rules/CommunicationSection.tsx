@@ -17,6 +17,13 @@ const CommunicationSection = ({ t }: CommunicationSectionProps) => {
           </p>
         </li>
         <li className="flex gap-2 hover:bg-primary/10 p-2 rounded-lg transition-all duration-300 transform hover:translate-x-2">
+          <span>🔗</span>
+          <p>
+            <span className="font-semibold">{t.communication.links.title}</span>{" "}
+            {t.communication.links.content}
+          </p>
+        </li>
+        <li className="flex gap-2 hover:bg-primary/10 p-2 rounded-lg transition-all duration-300 transform hover:translate-x-2">
           <span>💿</span>
           <p>
             <span className="font-semibold">{t.communication.questions.title}</span>{" "}

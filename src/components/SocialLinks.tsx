@@ -23,7 +23,7 @@ const SocialLinks = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <a
-              href="https://banerone2.vercel.app/"
+              href="https://baneronetwo.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-secondary hover:bg-secondary-hover text-white rounded-lg transition-all duration-300 hover:scale-110 flex items-center gap-2"

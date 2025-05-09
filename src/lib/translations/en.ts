@@ -1,6 +1,21 @@
 export const enTranslations = {
   forum: {
-    redirecting: "Redirecting to forum..."
+    redirecting: "Redirecting to forum...",
+    title: "LiveOne Forum",
+    welcome: "Welcome to the LiveOne community forum! Here you can communicate, share ideas, and find new friends.",
+    discussions: {
+      title: "Discussions",
+      description: "Participate in discussions on various topics with other community members."
+    },
+    community: {
+      title: "Community",
+      description: "Meet other participants and find like-minded people."
+    },
+    guides: {
+      title: "Guides",
+      description: "Useful guides and tips from experienced community members."
+    },
+    button: "Go to forum"
   },
   title: "Server Rules",
   agreement: "By participating in our server, you automatically agree to these rules.",
